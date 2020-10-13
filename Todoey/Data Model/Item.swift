@@ -16,4 +16,8 @@ class Item: Object {
     
     //Relationship
     var parentCategory = LinkingObjects(fromType: Category.self, property: "items")
+    
+    required init() {
+        self.dateCreated = Date()
+    }
 }

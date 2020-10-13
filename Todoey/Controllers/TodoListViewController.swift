@@ -48,7 +48,7 @@ class TodoListViewController: UITableViewController {
                         let newItem = Item() //Realm Object
                         newItem.title = textField.text!
                         newItem.done = false
-                        newItem.dateCreated = Date()
+//                        newItem.dateCreated = Date()
                         currentCategory.items.append(newItem)
                     }
                 } catch {
