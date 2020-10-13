@@ -1,10 +1,10 @@
-//
-//  SwipeTableViewController.swift
-//  Todoey
-//
-//  Created by Sam on 10/13/20.
-//  Copyright © 2020 App Brewery. All rights reserved.
-//
+/* Organized by Commits */
+
+// 1 - Apply UserDefaults.plist & Custom.plist
+// 2 - CoreData
+// 3 - Realm
+
+// 4 - CocoaPod: SwiftCellKit - superclass
 
 import UIKit
 import SwipeCellKit

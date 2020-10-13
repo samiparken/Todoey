@@ -4,8 +4,7 @@
 // 2 - CoreData
 // 3 - Realm
 
-// 4 - CocoaPod: SwiftCellKit
-// 5 - CocoaPod: SwiftCellKit - superclass
+// 4 - CocoaPod: SwiftCellKit - superclass
 
 
 import UIKit
