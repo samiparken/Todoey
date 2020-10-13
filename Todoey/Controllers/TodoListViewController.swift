@@ -2,7 +2,7 @@
 import UIKit
 import RealmSwift
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: SwipeTableViewController {
 
     // Realm
     let realm = try! Realm()
@@ -19,9 +19,8 @@ class TodoListViewController: UITableViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-//        loadItems()
-
+        
+        tableView.rowHeight = 80.0
     }
     
     //MARK: - Add New Items (UIAlert)
@@ -73,8 +72,9 @@ class TodoListViewController: UITableViewController {
     /* Called as many as the Number of Rows */
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        // Cell Title
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoItemCell", for: indexPath)
+        // Swipable Cell from Superclass
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
         if let item = itemArray?[indexPath.row] {
             cell.textLabel?.text = item.title
             cell.accessoryType = item.done ? .checkmark : .none
@@ -94,8 +94,7 @@ class TodoListViewController: UITableViewController {
         if let item = itemArray?[indexPath.row] {
             do {
                 try realm.write {
-                    if item.done == false { item.done = !item.done } // check <-> uncheck
-                    else { realm.delete(item) } // delete item
+                    item.done = !item.done
                 }
             } catch {
                 print("Error saving done status, \(error)")
@@ -116,6 +115,24 @@ class TodoListViewController: UITableViewController {
         // Load All Items from SelectedCategory
         itemArray = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
         tableView.reloadData()
+        
+    }
+    
+    //MARK: - Delete Data From Swipe
+    //lowerclass
+    override func updateModel(at indexPath: IndexPath) {
+        super.updateModel(at: indexPath)
+        
+        if let item = self.itemArray?[indexPath.row] {
+            do {
+                try self.realm.write {
+                    self.realm.delete(item)  // delete
+                    print("Item Deleted")
+                }
+            } catch {
+                print("Error saving done status, \(error)")
+            }
+        }
     }
 }
 
