@@ -3,7 +3,6 @@
 // 1 - Apply UserDefaults.plist & Custom.plist
 // 2 - CoreData
 // 3 - Realm
-
 // 4 - CocoaPod: SwiftCellKit - superclass
 
 import UIKit
