@@ -11,6 +11,7 @@ import RealmSwift
 
 class Category: Object {
     @objc dynamic var name: String = ""         //dynamic : being monitored while running
+    @objc dynamic var color: String = ""
     
     //Relationship
     let items = List<Item>()  //Initialize with empty List of Item

@@ -17,6 +17,7 @@ class CategoryViewController: SwipeTableViewController {
         loadCategories()
         
         tableView.rowHeight = 80.0
+        tableView.separatorStyle = .none
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -32,10 +33,11 @@ class CategoryViewController: SwipeTableViewController {
         }
         
         // Triggered by clicking the "Add Item" button on our UIAlert.
-        let action = UIAlertAction(title: "Add Category", style: .default) { (action) in
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
             let newCategory = Category() //Realm Object
             newCategory.name = textField.text!
+            newCategory.color = UIColor.randomFlat().hexValue()
             
             self.save(category: newCategory)
         }
@@ -55,8 +57,9 @@ class CategoryViewController: SwipeTableViewController {
 
         // Swipable Cell from Superclass
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
         cell.textLabel?.text = categoryArray?[indexPath.row].name ?? "No Categories added yet."
-        cell.backgroundColor = UIColor.randomFlat()
+        cell.backgroundColor = UIColor(hexString: (categoryArray?[indexPath.row].color) ?? "1D9BF6")
 
         return cell
     }
