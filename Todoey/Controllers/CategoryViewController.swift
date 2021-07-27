@@ -1,5 +1,6 @@
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class CategoryViewController: SwipeTableViewController {
     
@@ -55,6 +56,7 @@ class CategoryViewController: SwipeTableViewController {
         // Swipable Cell from Superclass
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categoryArray?[indexPath.row].name ?? "No Categories added yet."
+        cell.backgroundColor = UIColor.randomFlat()
 
         return cell
     }
