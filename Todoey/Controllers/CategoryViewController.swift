@@ -18,6 +18,15 @@ class CategoryViewController: SwipeTableViewController {
         
         tableView.rowHeight = 80.0
         tableView.separatorStyle = .none
+        
+        // Added for fixing nav background color bug
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.configureWithOpaqueBackground()
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.backgroundColor = UIColor.systemBlue
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
