@@ -10,6 +10,9 @@ class TodoListViewController: SwipeTableViewController {
     // Object Array
     var itemArray: Results<Item>?
 
+    //SearchBar
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     // Prep for Getting Segue
     var selectedCategory: Category? {
         didSet{ //Trigger when the value is set
@@ -29,17 +32,22 @@ class TodoListViewController: SwipeTableViewController {
         // set navibation bar color from the selected category
         if let colorHex = selectedCategory?.color {
             
+            // title
             title = selectedCategory!.name
-                                
+                    
+            // navbar color
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
             navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.backgroundColor = UIColor(hexString: colorHex)
-            
             guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
             navBar.standardAppearance = navBarAppearance
             navBar.scrollEdgeAppearance = navBarAppearance
+            
+            // search bar
+            searchBar.searchTextField.backgroundColor = FlatWhite()
+            searchBar.barTintColor = UIColor(hexString: colorHex)
         }
     }
         
