@@ -19,6 +19,9 @@ class CategoryViewController: SwipeTableViewController {
         tableView.rowHeight = 80.0
         tableView.separatorStyle = .none
         
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         // Added for fixing nav background color bug
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.configureWithOpaqueBackground()
@@ -28,6 +31,7 @@ class CategoryViewController: SwipeTableViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
+    
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -69,7 +73,8 @@ class CategoryViewController: SwipeTableViewController {
         
         cell.textLabel?.text = categoryArray?[indexPath.row].name ?? "No Categories added yet."
         cell.backgroundColor = UIColor(hexString: (categoryArray?[indexPath.row].color) ?? "1D9BF6")
-
+        cell.selectionStyle = .none
+        
         return cell
     }
 

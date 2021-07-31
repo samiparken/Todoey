@@ -22,8 +22,25 @@ class TodoListViewController: SwipeTableViewController {
         
         tableView.rowHeight = 80.0
         tableView.separatorStyle = .none
+        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        // set navibation bar color from the selected category
+        if let colorHex = selectedCategory?.color {
+            guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
+                                
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarAppearance.backgroundColor = UIColor(hexString: colorHex)
+            
+            navBar.standardAppearance = navBarAppearance
+            navBar.scrollEdgeAppearance = navBarAppearance
+        }
+    }
+        
     //MARK: - Add New Items (UIAlert)
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
