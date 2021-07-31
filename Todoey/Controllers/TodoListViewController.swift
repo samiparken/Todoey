@@ -28,7 +28,8 @@ class TodoListViewController: SwipeTableViewController {
     override func viewWillAppear(_ animated: Bool) {
         // set navibation bar color from the selected category
         if let colorHex = selectedCategory?.color {
-            guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
+            
+            title = selectedCategory!.name
                                 
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
@@ -36,6 +37,7 @@ class TodoListViewController: SwipeTableViewController {
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.backgroundColor = UIColor(hexString: colorHex)
             
+            guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
             navBar.standardAppearance = navBarAppearance
             navBar.scrollEdgeAppearance = navBarAppearance
         }
