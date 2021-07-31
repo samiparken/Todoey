@@ -27,7 +27,7 @@ class CategoryViewController: SwipeTableViewController {
         navBarAppearance.configureWithOpaqueBackground()
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        navBarAppearance.backgroundColor = UIColor.systemBlue
+        navBarAppearance.backgroundColor = UIColor(hexString: "1D9BF6")
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
     }
@@ -70,10 +70,14 @@ class CategoryViewController: SwipeTableViewController {
 
         // Swipable Cell from Superclass
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        
-        cell.textLabel?.text = categoryArray?[indexPath.row].name ?? "No Categories added yet."
-        cell.backgroundColor = UIColor(hexString: (categoryArray?[indexPath.row].color) ?? "1D9BF6")
+
         cell.selectionStyle = .none
+
+        if let category = categoryArray?[indexPath.row] {
+            cell.textLabel?.text = category.name
+            cell.textLabel?.textColor = ContrastColorOf(UIColor(hexString: category.color)!, returnFlat: true)
+            cell.backgroundColor = UIColor(hexString: category.color)
+        }
         
         return cell
     }
